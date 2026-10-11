@@ -1,0 +1,4 @@
+public class BankAccountMain {
+    public static void main(String[] args) { BankAccount account=new BankAccount("AC1001","Anurag",1000); account.deposit(500); account.withdraw(200); account.withdraw(5000); account.displayAccount(); }
+}
+class BankAccount { private String accountNo,accountHolderName; private double balance; BankAccount(String accountNo,String accountHolderName,double balance){this.accountNo=accountNo;this.accountHolderName=accountHolderName;this.balance=Math.max(0,balance);} public void deposit(double amount){if(amount>0)balance+=amount;} public void withdraw(double amount){boolean success=false;if(amount>0&&amount<=balance){balance-=amount;success=true;}System.out.println(success?"Withdrawal successful":"Withdrawal failed");} public double getBalance(){return balance;} void displayAccount(){System.out.println(accountNo+" | "+accountHolderName+" | Balance: ₹"+balance);} }

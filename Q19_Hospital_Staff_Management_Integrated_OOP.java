@@ -1,0 +1,8 @@
+public class HospitalStaffMain {
+    public static void main(String[] args) { Employee[] staff={new Doctor("Isha",36,101,90000,"Cardiology"),new Pharmacist("Ravi",31,102,42000,"PH-77")}; new StaffManager().displayStaff(staff); System.out.println("Total employees: "+Employee.employeeCount); }
+}
+class Person { protected String name; protected int age; Person(String name,int age){this.name=name;this.age=age;} }
+class Employee extends Person { private int employeeId; private double salary; static int employeeCount=0; Employee(String name,int age,int employeeId,double salary){super(name,age);this.employeeId=employeeId;this.salary=Math.max(0,salary);employeeCount++;} public int getEmployeeId(){return employeeId;} public double getSalary(){return salary;} public void setSalary(double salary){if(salary>=0)this.salary=salary;} void displayEmployee(){System.out.println(employeeId+" | "+name+" | age "+age+" | ₹"+salary);} }
+class Doctor extends Employee { private String specialization; Doctor(String name,int age,int id,double salary,String specialization){super(name,age,id,salary);this.specialization=specialization;} void displayRole(){displayEmployee();System.out.println("Role: Doctor; specialization: "+specialization);} }
+class Pharmacist extends Employee { private String licenseNo; Pharmacist(String name,int age,int id,double salary,String licenseNo){super(name,age,id,salary);this.licenseNo=licenseNo;} void displayRole(){displayEmployee();System.out.println("Role: Pharmacist; license: "+licenseNo);} }
+class StaffManager { void displayStaff(Employee[] staff){int i=0;for(Employee e:staff){if(e instanceof Doctor)((Doctor)e).displayRole();else if(e instanceof Pharmacist)((Pharmacist)e).displayRole();i++;}System.out.println("Processed staff records: "+i);} }
